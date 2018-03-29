@@ -1,0 +1,87 @@
+class Solution {
+    public String intToRoman(int num) {
+        int tail = 0, x = 0;
+        StringBuilder sb = new StringBuilder();
+        x = num/1000;
+        while(x != 0){
+            sb.append("M");
+            x -= 1;
+        }
+        x = (num%1000)/100;
+            if(x <= 3){
+                while(x != 0){
+                    sb.append("C");
+                    x--;
+                }
+            }
+            if(x > 4&&x < 9){
+                sb.append("D");
+                while(x != 5){
+                    sb.append("C");
+                    x--;
+                }
+            }
+            if(x == 4){
+                sb.append("CD");
+            }
+            if(x == 9){
+                sb.append("CM");
+            }
+        
+        x=(num%100)/10;
+            if(x < 4){
+                while(x != 0){
+                    sb.append("X");
+                    x--;
+                }
+            }
+            if(x > 4&& x<9){
+                sb.append("L");
+                while(x !=5){
+                    sb.append("X");
+                    x--;
+                }
+            }
+            if(x == 4){
+                sb.append("XL");
+            }
+            if(x == 9){
+                sb.append("XC");
+            }
+        x=num%10;
+        if(x < 4){
+            while(x != 0){
+                sb.append("I");
+                x--;
+            }
+        }
+        if(x == 4){
+            sb.append("IV");
+        }
+        if(x >= 5 && x < 9){
+            sb.append("V");
+            while(x != 5){
+                sb.append("I");
+                x--;
+            }
+        }
+        if(x == 9){
+            sb.append("IX");
+        }
+    return sb.toString();
+    }
+}
+
+
+
+
+class Solution {
+    public String intToRoman(int num) {
+     
+        String M[] = {"", "M", "MM", "MMM"};
+        String C[] = {"", "C", "CC", "CCC", "CD", "D", "DC", "DCC", "DCCC", "CM"};
+        String X[] = {"", "X", "XX", "XXX", "XL", "L", "LX", "LXX", "LXXX", "XC"};
+        String I[] = {"", "I", "II", "III", "IV", "V", "VI", "VII", "VIII", "IX"};
+        return M[num/1000] + C[(num%1000)/100]+ X[(num%100)/10] + I[num%10];
+    }
+}
