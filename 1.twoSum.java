@@ -13,3 +13,19 @@ class Solution {
     throw new IllegalArgumentException("No two sum solution");
     }
 }
+
+
+class Solution(object):
+    def twoSum(self, nums, target):
+        """
+        :type nums: List[int]
+        :type target: int
+        :rtype: List[int]
+        """
+        dic=set()
+        
+        for i,num in enumerate(nums):
+            if target - num in dic:
+                return [nums.index(target-num),i]
+            else:
+                dic.add(num)
