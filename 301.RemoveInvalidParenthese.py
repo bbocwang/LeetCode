@@ -9,28 +9,30 @@ class Solution:
         self.getLR(s)
         L=self.l
         R = self.r
-        ans = []
-        dfs(s,0,L,R,ans)
-        return ans
+        self.ans = []
+        self.dfs(s,0,L,R)
+        return self.ans
         
         
-    def dfs(self,s,start,l,r,ans):
+    def dfs(self,s,start,l,r):
         if l == 0 and r == 0:
-            if self(isValid(s)):
-                ans.append(s)
+
+            if self.isValid(s):
+                self.ans.append(s)
                 return
         for i in range(start,len(s)):
             if s[i] == s[i-1] and i != start:
                 continue
             elif s[i] == ')' and r > 0:
-                curr = removeChar(s,i)
-                r -= 1
-                dfs(curr,i,l,r,ans)
-            el
+                curr = self.removeChar(s,i)
+                self.dfs(curr,i,l,r-1)
+            elif s[i] == '(':
+                curr = self.removeChar(s,i)
+                self.dfs(curr,i,l-1,r)
                 
-    def removeChar(self,s.i):
-        head = s[:n]
-        tail = s[n+1:]
+    def removeChar(self,s,i):
+        head = s[:i]
+        tail = s[i+1:]
         return head+tail
         
         
@@ -60,4 +62,3 @@ class Solution:
             return True
         else:
             return False
-        
