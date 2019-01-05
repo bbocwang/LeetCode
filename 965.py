@@ -24,3 +24,15 @@ class Solution:
         if node.left == None and node.right != None:
             return self.search(node.right,value)
         else: return True
+        
+        
+        
+class Solution:
+    def isUnivalTree(self, root):
+        """
+        :type root: TreeNode
+        :rtype: bool
+        """
+        def dfs(node):
+            return not node or node.val==root.val and dfs(node.left) and dfs(node.right)
+        return dfs(root)
