@@ -51,3 +51,53 @@ class Solution {
         return (int)result*sign;
     }
 }
+
+
+class Solution:
+    def myAtoi(self, str):
+        """
+        :type str: str
+        :rtype: int
+        """
+        if not str:
+            return 0
+        res = ''
+        num = ['1','2','3','4','5','6','7','8','9','0']
+        start = 0
+        end = 0
+        check = False
+        sign = ''
+        for idx,i in enumerate(str):
+            if i == ' ' and not check:
+                if idx+1 == len(str):
+                    return 0
+                else:
+                    continue
+            elif i in ['+','-'] and idx+1 < len(str) and str[idx+1] in num and not check:
+                sign = i
+            elif i in num and idx == 0 or i in num and idx!=0 and str[idx-1]in['+','-',' ']:
+                start = idx
+                check = True
+                if idx+1 == len(str):
+                    end = idx
+            elif i in num and idx +1 == len(str) or i in num and idx+1<len(str) and str[idx+1] not in num:
+                end = idx
+                break
+            elif i in num:
+                continue
+            elif i != ' ' and i not in num and i not in['-','+'] and not check:
+                return 0
+            elif i != ' ' and i not in num and check:
+                end = idx-1
+                break
+            else:
+                return 0
+        if sign == '-':
+            if -int(str[start:end+1]) < -2147483648:
+                return -2147483648
+            else:
+                return -int(str[start:end+1])
+        else: 
+            if int(str[start:end+1]) < 2147483647:
+                return int(str[start:end+1])
+            else:return 2147483647
