@@ -28,3 +28,20 @@ class Solution {
         return prev;
      }
 }
+
+
+//Python code:
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        if not head:
+            return None
+        if not head.next:
+            return head
+        curr = head
+        pre = None
+        while curr:
+            temp = curr.next
+            curr.next = pre
+            pre = curr
+            curr = temp
+        return pre
